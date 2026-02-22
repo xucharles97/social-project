@@ -8,6 +8,7 @@ import (
 	"socialai/backend/service"
 	"socialai/model"
 
+	jwt "github.com/form3tech-oss/jwt-go"
 	"github.com/pborman/uuid"
 )
 
@@ -28,10 +29,14 @@ var (
 func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received one upload request")
 	
+   token := r.Context().Value("user") // user:token <- jwt middleware
+   claims := token.(*jwt.Token).Claims
+   username := claims.(jwt.MapClaims)["username"]
+
 	// Process http request: multipart request -> model.Post, Image/Video
 	p := model.Post {
 		Id:			uuid.New(),
-		User: 		r.FormValue("user"),
+		User: 		username.(string),
 		Message:	r.FormValue("message"),
 	}
 
@@ -65,9 +70,12 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 func searchHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println("Received one request for search")
     w.Header().Set("Content-Type", "application/json")
-
+   
+	// URL -> string
     user := r.URL.Query().Get("user")
     keywords := r.URL.Query().Get("keywords")
+    fmt.Println("user:" + user)
+    fmt.Println("keywords:" + keywords)
 
     var posts []model.Post
     var err error

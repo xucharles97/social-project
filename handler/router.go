@@ -10,5 +10,8 @@ func InitRouter() *mux.Router {
 	router := mux.NewRouter()
 	router.Handle("/upload", http.HandlerFunc(uploadHandler)).Methods("POST")
 	router.Handle("/search", http.HandlerFunc(searchHandler)).Methods("GET")
+
+	router.Handle("/signup", http.HandlerFunc(signUpHandler)).Methods("POST")
+	router.Handle("/signin", http.HandlerFunc(signinHandler)).Methods("POST")
 	return router
 }

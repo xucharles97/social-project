@@ -50,7 +50,6 @@ func signUpHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("User added successfully: %s.\n", user.Username)
 }
 
-var mySigningKey = []byte("secret")
 func signinHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received one signin request")
     w.Header().Set("Content-Type", "text/plain")

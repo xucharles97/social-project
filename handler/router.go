@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"socialai/util"
 
 	jwtMiddleware "github.com/auth0/go-jwt-middleware"
 
@@ -10,7 +11,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func InitRouter() http.Handler {
+var mySigningKey []byte
+
+func InitRouter(config *util.TokenInfo) http.Handler {
+	mySigningKey = []byte(config.Secret)
 
 	jwtMiddleware := jwtMiddleware.New(jwtMiddleware.Options{
        ValidationKeyGetter: func(token *jwt.Token) (interface{}, error) {

@@ -12,7 +12,7 @@ import (
 func main() {
     fmt.Println("started-service")
 
-	config, err := util.LoadApplicationConfig("conf", "deploy.yml")
+	config, err := util.LoadApplicationConfig("conf", "deploy.yaml")
 	if err != nil {
 		panic(err)
 	}

@@ -1,0 +1,11 @@
+@import "~antd/dist/antd.css";
+@import "./Login.css";
+
+.login-form {
+  width: 300px;
+  margin: 200px auto;
+}
+
+.login-form-button {
+  width: 300px;
+}

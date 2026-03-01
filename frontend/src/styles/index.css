@@ -1,6 +1,11 @@
 @import "~antd/dist/antd.css";
 @import "./Login.css";
 @import "./Register.css";
+@import "./SearchBar.css";
+@import "./Collection.css";
+
+@import "yet-another-react-lightbox/styles.css";
+@import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 body {
   margin: 0;

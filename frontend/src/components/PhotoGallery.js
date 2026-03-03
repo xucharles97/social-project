@@ -66,7 +66,7 @@ const PhotoGallery = (props) => {
         return img.postid !== postId;
       });
 
-      const option = {
+      const opt = {
         method: "DELETE",
         url: `${BASE_URL}/post/${postId}`,
         headers: {

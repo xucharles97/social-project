@@ -17,7 +17,7 @@ The key components of the tech stack are:
 - **Postman** for backend debugging
 - **Google Cloud** for hosting and deployment
 
-### AWS Hosting
+### Google Cloud 
 
 This project leveraged various Google Cloud services throughout development up to the final deployment. This includes:
 - **Google Compute Engine (GCE)** for a virtual backend development environment

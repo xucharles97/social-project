@@ -2,13 +2,13 @@ import React, { forwardRef } from "react";
 import { Form, Upload, Input } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
-export const PostForm = forwardRef(() => {
+export const PostForm = forwardRef((props, formRef) => {
   const formItemLayout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 14 },
   };
 
-  const normFile = (e) => (Array.isArray(e) ? e : e?.fileLIst);
+  const normFile = (e) => (Array.isArray(e) ? e : e?.fileList);
 
   return (
     <Form name="validate_other" {...formItemLayout} ref={formRef}>
@@ -18,21 +18,24 @@ export const PostForm = forwardRef(() => {
         rules={[
           {
             required: true,
-            message: "Please input your message",
+            message: "Please input your message!",
           },
         ]}
       >
         <Input />
       </Form.Item>
-
       <Form.Item label="Dragger">
         <Form.Item
           name="uploadPost"
           valuePropName="fileList"
-          getValueFrom
-          Event={normFile}
+          getValueFromEvent={normFile}
           noStyle
-          rules={[{ required: true, message: "Please input your message" }]}
+          rules={[
+            {
+              required: true,
+              message: "Please select an image/video!",
+            },
+          ]}
         >
           <Upload.Dragger name="files" beforeUpload={() => false}>
             <p className="ant-upload-drag-icon">

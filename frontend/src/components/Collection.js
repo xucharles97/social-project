@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import { Tabs, message, Row, Col } from "antd";
 import axios from "axios";
 import PhotoGallery from "./PhotoGallery";
+import CreatePostButton from "./CreatePostButton";
 
 const { TabPane } = Tabs;
 
@@ -87,7 +88,7 @@ function Collection(props) {
       return <PhotoGallery images={imageArr} />;
     } else if (type === "video") {
       filtered = posts.filter((post) => {
-        return post.type === "image";
+        return post.type === "video";
       });
 
       if (!filtered || filtered.length === 0) {
@@ -108,6 +109,15 @@ function Collection(props) {
     }
   };
 
+  const showPost = (type) => {
+    setActiveTab(type);
+    setTimeout(() => {
+      setSearchOption({ type: SEARCH_KEY.all, keyword: "" });
+    }, 3000);
+  };
+
+  const operations = <CreatePostButton onShowPost={showPost} />;
+
   return (
     <div className="home">
       <SearchBar handleSearch={handleSearch} />
@@ -116,6 +126,7 @@ function Collection(props) {
           onChange={(key) => setActiveTab(key)}
           defaultActiveKey="image"
           activeKey={activeTab}
+          tabBarExtraContent={operations}
         >
           <TabPane tab="Images" key="image">
             {renderPosts("image")}
